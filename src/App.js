@@ -11,18 +11,16 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-           <nav>
-             <ul>
-               <li>
-                 <Link to="/">Home</Link>
-               </li>
-               <li>
-                 <Link to="/directory">Directory</Link>
-               </li>
-               <li>
-                 <Link to="/shop">Shop</Link>
-               </li>
-             </ul>
+           <nav className="navbar">
+              <li className="navbarItem">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="navbarItem">
+                <Link to="/directory">Directory</Link>
+              </li>
+              <li className="navbarItem">
+                <Link to="/shop">Shop</Link>
+              </li >
            </nav>
            {/* ION EVEN KNOW WHAT GOES IN HERE TBH!! */}
            <Switch>

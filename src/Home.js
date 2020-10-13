@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Route, Link } from 'react-router-dom';
+import './Home.css'
+// import { Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Home extends React.Component {
@@ -10,7 +11,8 @@ class Home extends React.Component {
         title: '',
         description: ''
       },
-      plantList: []
+      plantList: [],
+      spotlight: []
     }
   }
   componentDidMount() {
@@ -22,19 +24,40 @@ class Home extends React.Component {
       .then(res => this.setState({ plantList: res.data }))
       .catch(err => console.log(err))
   }
-  renderItems = () => {
+  shuffleList = () => {
+    // shuffle through the entire list & display three plants
     const { plantList } = this.state
-    return plantList.map(plant => (
-      <li key={plant.id}>
-        <span>{plant.title}</span>
-      </li>
-    ))
+    let spotlight = []
+    let len = 0
+    // one spotlight has a length of three display 3 (the test)
+    while (len < 4) {
+      // randomly choose plant from plantList
+      let plant = plantList[Math.floor(Math.random() * plantList.length)]
+      // check if item in plantList 
+      let dupCheck = spotlight.includes(plant) 
+      if (dupCheck === false) {
+        // add plant to spotlight list
+        spotlight.push(plant)
+      }
+      len += 1
+    } 
+
+    if (spotlight.length > 2) {
+      return spotlight.map(plant => (
+        <li key={plant.id} className="sPlant">
+            <h3>{plant.title}</h3>
+        </li>
+      ))
+    }
   }
+
   render() {
     return (
       <div className="App">
-      <h1> Green Thumb </h1>
-      {this.renderItems()}
+      <h1 style={{textAlign: 'center'}}> Green Thumb </h1>
+        <div style={{textAlign: 'center'}}>
+          {this.shuffleList()}
+        </div>
       </div>
     )
   }

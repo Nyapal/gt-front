@@ -3,7 +3,7 @@ import React from 'react';
 class Shop extends React.Component {
   render() {
     return (
-      <h1> Shop </h1>
+      <h1 style={{textAlign: 'center'}}> Coming Soon! </h1>
     )
   }
 }
